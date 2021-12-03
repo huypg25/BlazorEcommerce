@@ -1,4 +1,6 @@
-﻿<ul class = "list-unstyled">
+﻿@inject HttpClient Http
+
+<ul class = "list-unstyled">
     @foreach (var product in Products){
         <li class = "media my-3">
             <div class = "media-img-wrapper mr-2">
@@ -27,16 +29,9 @@
 
 
 @code {
-    public static List<Product> Products = new List<Product>
-        {
-            new Product{
-                Id = 1,
-                Title = "loremasdasdasdasd",
-                Decription = "aaaaaaaaaaaaa",
-                ImageUrl = "https://static.wikia.nocookie.net/tomandjerry/images/1/14/Tom_Cat_2.png/revision/latest?cb=20200412163656",
-                Price = 99.9m
-
-            
-            }
-        };
+    private static List<Product> Products { get; set; } = new List<Product>();
+    protected override async Task OnInitializedAsync()
+    {
+        Products = await Http.GetFromJsonAsync<List<Product>>("api/Product");
+    }
 }
