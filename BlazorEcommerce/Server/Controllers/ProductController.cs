@@ -1,6 +1,8 @@
-﻿using BlazorEcommerce.Shared;
+﻿using BlazorEcommerce.Server.Data;
+using BlazorEcommerce.Shared;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace BlazorEcommerce.Server.Controllers
 {
@@ -8,21 +10,18 @@ namespace BlazorEcommerce.Server.Controllers
     [ApiController]
     public class ProductController : ControllerBase
     {
-        private static List<Product> Products = new List<Product>
+        private readonly DataContext context;
+
+        public ProductController(DataContext context)
         {
-            new Product{
-                Id = 1,
-                Title = "loremasdasdasdasd",
-                Decription = "aaaaaaaaaaaaa",
-                ImageUrl = "https://static.wikia.nocookie.net/tomandjerry/images/1/14/Tom_Cat_2.png/revision/latest?cb=20200412163656",
-                Price = 99.9m
-            }
-        };
+            this.context = context;
+        }
+
         [HttpGet]
         public async Task<ActionResult<List<Product>>> GetProducts()
         {
-
-            return Ok(Products);
+            var products = await this.context.Products.ToListAsync();
+            return Ok(products);
         }
     }
 }
