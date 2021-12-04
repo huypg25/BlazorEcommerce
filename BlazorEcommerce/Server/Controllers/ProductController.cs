@@ -12,9 +12,12 @@ namespace BlazorEcommerce.Server.Controllers
     public class ProductController : ControllerBase
     {
         private readonly IProductService productService;
+        private readonly DataContext context;
 
-        public ProductController(IProductService productService)
+        public ProductController(DataContext context, IProductService productService)
         {
+            this.context = context;
+
             this.productService = productService;
         }
 

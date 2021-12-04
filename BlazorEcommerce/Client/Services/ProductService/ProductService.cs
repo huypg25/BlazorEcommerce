@@ -15,9 +15,8 @@ namespace BlazorEcommerce.Client.Services.ProductService
 
         public async Task GetProducts()
         {
-            var result = await this.http.GetFromJsonAsync<ServiceResponse<List<Product>>>("apt/Product");
+            var result = await this.http.GetFromJsonAsync<ServiceResponse<List<Product>>>("api/Product");
             Products = result.Data;
-
         }
     }
 }

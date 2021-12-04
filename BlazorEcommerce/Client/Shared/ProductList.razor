@@ -4,6 +4,7 @@
 {
     <span>Loading products ...</span>
 }
+else{
 <ul class = "list-unstyled">
     @foreach (var product in ProductService.Products){
         <li class = "media my-3">
@@ -29,7 +30,7 @@
     }
 </ul>
 
-
+}
 
 
 @code {
