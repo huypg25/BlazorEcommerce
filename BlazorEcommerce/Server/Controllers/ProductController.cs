@@ -11,12 +11,10 @@ namespace BlazorEcommerce.Server.Controllers
     [ApiController]
     public class ProductController : ControllerBase
     {
-        private readonly DataContext context;
         private readonly IProductService productService;
 
-        public ProductController(DataContext context, IProductService productService)
+        public ProductController(IProductService productService)
         {
-            this.context = context;
             this.productService = productService;
         }
 
