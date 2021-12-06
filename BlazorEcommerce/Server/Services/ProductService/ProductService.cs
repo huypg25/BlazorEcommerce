@@ -24,7 +24,6 @@ namespace BlazorEcommerce.Server.Services.ProductService
             }
             else
             {
-                response.Success= true;
                 response.Data = product;
             }
             return response;
